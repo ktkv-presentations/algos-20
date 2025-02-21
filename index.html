@@ -1,425 +1,664 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>reveal.js</title>
 
-    <title>reveal.js</title>
+        <link rel="stylesheet" href="dist/reset.css" />
+        <link rel="stylesheet" href="dist/reveal.css" />
+        <link rel="stylesheet" href="dist/theme/tokyo-night.css" />
 
-    <link rel="stylesheet" href="dist/reset.css" />
-    <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/tokyo-night.css" />
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/tokyo-night.css" />
+        <link rel="stylesheet" href="plugin/chalkboard/style.css" />
+        <link rel="stylesheet" href="plugin/customcontrols/style.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-    <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/tokyo-night.css" />
-    <link rel="stylesheet" href="plugin/chalkboard/style.css" />
-    <link rel="stylesheet" href="plugin/customcontrols/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body>
-    <div class="reveal">
-        <div class="slides">
-            <section>
-                <h1>Лямбда функции</h1>
-                <img class="r-stretch" src="https://ktkv-presentations.github.io/algos-20" data-type="qrcode" />
-            </section>
-            <section>
+    <body>
+        <div class="reveal">
+            <div class="slides">
                 <section>
-                    <h1>Лямбда функция (анонимная функция)</h1>
-                    <h4><code>lambda x: x * 2</code></h4>
-                    <p>функция, которая создается без использования def и не привязывается к имени (хотя может быть
-                        присвоена переменной)</p>
-                    <div class="border-r">Она записывается в одну строку и обычно используется для кратковременных
-                        операций</div>
+                    <h1>Лямбда функции</h1>
+                    <img
+                        class="r-stretch"
+                        src="https://ktkv-presentations.github.io/algos-20"
+                        data-type="qrcode" />
                 </section>
                 <section>
-                    <h1>Сравнение обычной функции и лямбда-функции</h1>
-                    <pre><code data-trim class="python">
+                    <section>
+                        <h1>Лямбда функция (анонимная функция)</h1>
+                        <h4><code>lambda x: x * 2</code></h4>
+                        <p>
+                            функция, которая создается без использования def и
+                            не привязывается к имени (хотя может быть присвоена
+                            переменной)
+                        </p>
+                        <div class="border-r">
+                            Она записывается в одну строку и обычно используется
+                            для кратковременных операций
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Сравнение обычной функции и лямбда-функции</h1>
+                        <pre><code data-trim class="python">
 # Обычная функция
 def square_def(x):
     return x ** 2
                     </code></pre>
-                </section>
-                <section>
-                    <h1>Сравнение обычной функции и лямбда-функции</h1>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h1>Сравнение обычной функции и лямбда-функции</h1>
+                        <pre><code data-trim class="python">
 # Обычная функция
 # def square_def(x):
 #    return x ** 2
 
 lambda x: x * 2
                     </code></pre>
-                </section>
-                <section>
-                    <table>
-                        <thead style="color: var(--blue)">
-                            <td>Критерий</td>
-                            <td>Лямбда-функция</td>
-                            <td>Обычная функция (def)</td>
-                        </thead>
-                        <tr>
-                            <td>Способ объявления</td>
-                            <td>lambda args: expr</td>
-                            <td>def name(args): return expr</td>
-                        </tr>
-                        <tr>
-                            <td>Количество строк</td>
-                            <td>Одна строка</td>
-                            <td>Одна или несколько строк</td>
-                        </tr>
-                        <tr>
-                            <td>Автоматический return</td>
-                            <td>Да</td>
-                            <td>Требуется return</td>
-                        </tr>
-                        <tr>
-                            <td>Возможность документации (docstring)</td>
-                            <td>Нет</td>
-                            <td>Да</td>
-                        </tr>
-                        <tr>
-                            <td>Читаемость кода</td>
-                            <td>Может быть хуже</td>
-                            <td>Обычно лучше</td>
-                        </tr>
-                    </table>
-                </section>
-                <section>
-                    <h1>Применение лямбда-функции</h1>
-                    <ul>
-                        <li>
-                            Встроенные функции (<code>map()</code>, <code>filter()</code>, <code>sorted()</code> и др.).
-                        </li>
-                        <li>
-                            В анонимных коллбеках (например, в <code>sorted()</code>).
-                        </li>
-                        <li>
-                            При передаче небольших функций в качестве аргументов.
-                        </li>
-                        <li>
-                            В функциональном программировании (композиция функций, каррирование и др.).
-                        </li>
-                    </ul>
-                </section>
-                <section>
-                    <h1>Ограничения лямбда-функций</h1>
-                    <ul>
-                        <li>
-                            <b>Только одно выражение</b> – нельзя использовать циклы, <code>if-else</code>,
-                            <code>try-except</code>
-                        </li>
-                        <li>
-                            <b>Ограниченная читаемость</b> – сложные выражения могут ухудшать разбор кода.
-                        </li>
-                    </ul>
-                    <div class="border-r">
-                        <code>
-                            lambda x: for i in range(x): print(i)  # Ошибка!
+                    </section>
+                    <section>
+                        <table>
+                            <thead style="color: var(--blue)">
+                                <td>Критерий</td>
+                                <td>Лямбда-функция</td>
+                                <td>Обычная функция (def)</td>
+                            </thead>
+                            <tr>
+                                <td>Способ объявления</td>
+                                <td>lambda args: expr</td>
+                                <td>def name(args): return expr</td>
+                            </tr>
+                            <tr>
+                                <td>Количество строк</td>
+                                <td>Одна строка</td>
+                                <td>Одна или несколько строк</td>
+                            </tr>
+                            <tr>
+                                <td>Автоматический return</td>
+                                <td>Да</td>
+                                <td>Требуется return</td>
+                            </tr>
+                            <tr>
+                                <td>Возможность документации (docstring)</td>
+                                <td>Нет</td>
+                                <td>Да</td>
+                            </tr>
+                            <tr>
+                                <td>Читаемость кода</td>
+                                <td>Может быть хуже</td>
+                                <td>Обычно лучше</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <h1>Применение лямбда-функции</h1>
+                        <ul>
+                            <li>
+                                Встроенные функции (
+                                <code>map()</code>
+                                ,
+                                <code>filter()</code>
+                                ,
+                                <code>sorted()</code>
+                                и др.).
+                            </li>
+                            <li>
+                                В анонимных коллбеках (например, в
+                                <code>sorted()</code>
+                                ).
+                            </li>
+                            <li>
+                                При передаче небольших функций в качестве
+                                аргументов.
+                            </li>
+                            <li>
+                                В функциональном программировании (композиция
+                                функций, каррирование и др.).
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Ограничения лямбда-функций</h1>
+                        <ul>
+                            <li>
+                                <b>Только одно выражение</b>
+                                – нельзя использовать циклы,
+                                <code>if-else</code>
+                                ,
+                                <code>try-except</code>
+                            </li>
+                            <li>
+                                <b>Ограниченная читаемость</b>
+                                – сложные выражения могут ухудшать разбор кода.
+                            </li>
+                        </ul>
+                        <div class="border-r">
+                            <code>
+                                lambda x: for i in range(x): print(i) # Ошибка!
                             </code>
-                    </div>
-                </section>
-                <section>
-                    <h1>Синтаксис лямбда-функции</h1>
-                    <code>lambda аргументы: выражение</code>
-                    <ul>
-                        <li>
-                            <code>аргументы</code> — параметры, которые принимает функция
-                        </li>
-                        <li>
-                            <code>выражение</code> — одно выражение, результат которого будет возвращен
-                        </li>
-                    </ul>
-                    <pre><code data-trim class="python">
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Синтаксис лямбда-функции</h1>
+                        <code>lambda аргументы: выражение</code>
+                        <ul>
+                            <li>
+                                <code>аргументы</code>
+                                — параметры, которые принимает функция
+                            </li>
+                            <li>
+                                <code>выражение</code>
+                                — одно выражение, результат которого будет
+                                возвращен
+                            </li>
+                        </ul>
+                        <pre><code data-trim class="python">
 square = lambda x: x ** 2
 print(square(4))  # 16
                     </code></pre>
-                </section>
-                <section>
-                    <h1>Аргументы в лямбда-функции</h1>
-                    <h4>Один аргумент</h4>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h1>Аргументы в лямбда-функции</h1>
+                        <h4>Один аргумент</h4>
+                        <pre><code data-trim class="python">
 double = lambda x: x * 2
 print(double(5))  # 10
                     </code></pre>
-                    <hr>
-                    <h4>Несколько аргументов</h4>
-                    <pre><code data-trim class="python">
+                        <hr />
+                        <h4>Несколько аргументов</h4>
+                        <pre><code data-trim class="python">
 add = lambda x, y: x + y
 print(add(3, 4))  # 7
 
 avg = lambda x, y, z: (x + y + z) / 3
 print(avg(3, 6, 9))  # 6.0
                     </code></pre>
-                    <hr>
-                    <h4>Без аргументов</h4>
-                    <pre><code data-trim class="python">
+                        <hr />
+                        <h4>Без аргументов</h4>
+                        <pre><code data-trim class="python">
 def greet():
 return "Hello, world!"
                     </code></pre>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h1>Использование лямбда-функций</h1>
-                    <p>Применяются в сочетании со встроенными функциями Python, которые работают с коллекциями (map(),
-                        filter(), sorted(), reduce() и т. д.)</p>
+                    </section>
                 </section>
                 <section>
-                    <h1><code>map(func, iterable)</code></h1>
-                    <p>применяет функцию func ко всем элементам iterable и возвращает итератор</p>
-                    <pre><code data-trim class="python">
+                    <section>
+                        <h1>Использование лямбда-функций</h1>
+                        <p>
+                            Применяются в сочетании со встроенными функциями
+                            Python, которые работают с коллекциями (map(),
+                            filter(), sorted(), reduce() и т. д.)
+                        </p>
+                    </section>
+                    <section>
+                        <h1><code>map(func, iterable)</code></h1>
+                        <p>
+                            применяет функцию func ко всем элементам iterable и
+                            возвращает итератор
+                        </p>
+                        <pre><code data-trim class="python">
 numbers = [1, 2, 3, 4, 5]
 squared = list(map(lambda x: x ** 2, numbers))
 print(squared)  # [1, 4, 9, 16, 25]
                     </code></pre>
-                </section>
-                <section>
-                    <h1><code>filter(func, iterable)</code></h1>
-                    <p>оставляет только те элементы, для которых func возвращает True</p>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h1><code>filter(func, iterable)</code></h1>
+                        <p>
+                            оставляет только те элементы, для которых func
+                            возвращает True
+                        </p>
+                        <pre><code data-trim class="python">
 numbers = [1, 2, 3, 4, 5, 6]
 evens = list(filter(lambda x: x % 2 == 0, numbers))
 print(evens)  # [2, 4, 6]
                     </code></pre>
-                </section>
-                <section>
-                    <h1><code>sorted(iterable, key=func)</code></h1>
-                    <p>сортирует элементы на основе func</p>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h1><code>sorted(iterable, key=func)</code></h1>
+                        <p>сортирует элементы на основе func</p>
+                        <pre><code data-trim class="python">
 words = ["banana", "apple", "cherry"]
 sorted_words = sorted(words, key=lambda word: len(word))
 print(sorted_words)  # ['apple', 'banana', 'cherry']
                     </code></pre>
-                </section>
-                <section>
-                    <h1><code>reduce(func, iterable)</code></h1>
-                    <p>последовательно применяет func ко всем элементам iterable, сворачивая их в одно значение</p>
-                    <div class="border-b">
-                        Для этого необходимо импортировать functools.reduce
-                    </div>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h1><code>reduce(func, iterable)</code></h1>
+                        <p>
+                            последовательно применяет func ко всем элементам
+                            iterable, сворачивая их в одно значение
+                        </p>
+                        <div class="border-b">
+                            Для этого необходимо импортировать functools.reduce
+                        </div>
+                        <pre><code data-trim class="python">
 from functools import reduce
 numbers = [1, 2, 3, 4, 5]
 product = reduce(lambda x, y: x * y, numbers)
 print(product)  # 120
                     </code></pre>
+                    </section>
                 </section>
-            </section>
-            <section>
                 <section>
-                    <h1>примеры использования lambda в Python</h1>
-                    <h4>Сортировка списка кортежей по второму элементу</h4>
-                    <pre><code data-trim class="python">
+                    <section>
+                        <h1>примеры использования lambda в Python</h1>
+                        <h4>Сортировка списка кортежей по второму элементу</h4>
+                        <pre><code data-trim class="python">
 students = [("Alice", 25, 3.8), ("Bob", 22, 3.5), ("Charlie", 23, 3.9)]
 sorted_students = sorted(students, key=lambda s: s[1])  # Сортировка по возрасту
 print(sorted_students)
                     </code></pre>
-                    <hr>
-                    <h4>Поиск студента с максимальным баллом</h4>
-                    <pre><code data-trim class="python">
+                        <hr />
+                        <h4>Поиск студента с максимальным баллом</h4>
+                        <pre><code data-trim class="python">
 students = [("Alice", 25, 3.8), ("Bob", 22, 3.5), ("Charlie", 23, 3.9)]
 top_student = max(students, key=lambda s: s[2])  # Максимальный GPA
 print(top_student)
                    </code></pre>
-                </section>
-                <section>
-                    <h4>Применение map() для преобразования списка</h4>
-                    <pre><code data-trim class="python">
+                    </section>
+                    <section>
+                        <h4>Применение map() для преобразования списка</h4>
+                        <pre><code data-trim class="python">
 numbers = [1, 2, 3, 4, 5]
 squared = list(map(lambda x: x ** 2, numbers))  # [1, 4, 9, 16, 25]
 print(squared)
                     </code></pre>
+                    </section>
                 </section>
-            </section>
+                <section>
+                    <section>
+                        <h1>Генераторы</h1>
+                        <p>
+                            позволяет динамически создавать новые функции с
+                            заданными параметрами
+                        </p>
+                    </section>
+                    <section>
+                        <pre><code data-trim class="python">
+def greeting(greet):
+    return lambda name: f"{greet}, {name}!"
+
+morning_greeting = greeting("Good morning")
+evening_greeting = greeting("Good evening")
+
+print(morning_greeting("Bogdan"))  # Good morning, Bogdan!
+print(evening_greeting("Anna"))    # Good evening, Anna!
+                        </code></pre>
+                        <ol>
+                            <li>
+                                Функция greeting() принимает аргумент greet и
+                                возвращает лямбда-функцию, которая ожидает name.
+                            </li>
+                            <li>
+                                morning_greeting = greeting("Good morning")
+                                создает новую функцию, в которой greet = "Good
+                                morning".
+                            </li>
+                            <li>
+                                morning_greeting("Bogdan") подставляет name =
+                                "Bogdan" и возвращает строку "Good morning,
+                                Bogdan!".
+                            </li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h1>Создание настраиваемых математических функций</h1>
+                        <p>
+                            lambda создает индивидуальные функции возведения в
+                            степень
+                        </p>
+                        <pre><code data-trim class="python">
+def power_function(exponent):
+    return lambda base: base ** exponent
+
+square = power_function(2)  # Возвращает lambda base: base ** 2
+cube = power_function(3)    # Возвращает lambda base: base ** 3
+
+print(square(4))  # 16 (4^2)
+print(cube(2))    # 8  (2^3)
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Задания</h1>
+                        <h2>Часть 1</h2>
+                    </section>
+                    <section>
+                        <div class="border-b">
+                            <h3>1. Возведение в степень</h3>
+                            <p>
+                                Напишите лямбда-функцию, которая принимает число
+                                x и возвращает его квадрат
+                            </p>
+                            <h4>Ожидаемый результат:</h4>
+                            <pre><code data-trim class="python">
+square(5)  # 25
+square(10)  # 100
+                        </code></pre>
+                        </div>
+                        <hr />
+                        <div class="border-b">
+                            <h3>Проверка четности</h3>
+                            <p>
+                                Напишите лямбда-функцию, которая проверяет,
+                                является ли число четным
+                            </p>
+                            <h4>Ожидаемый результат:</h4>
+                            <pre><code data-trim class="python">
+square(5)  # 25
+square(10)  # 100
+                        </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="border-b">
+                            <h3>Объединение строк</h3>
+                            <p>
+                                Напишите лямбда-функцию, которая принимает два
+                                аргумента first и last (имя и фамилия) и
+                                возвращает строку "Имя Фамилия"
+                            </p>
+                            <h4>Ожидаемый результат:</h4>
+                            <pre><code data-trim class="python">
+full_name("Ivan", "Petrov")  # "Ivan Petrov"
+                            </code></pre>
+                        </div>
+                        <hr />
+                        <div class="border-b">
+                            <h3>Минимальное из двух чисел</h3>
+                            <p>
+                                Напишите лямбда-функцию, которая возвращает
+                                меньшее из двух чисел
+                            </p>
+                            <h4>Ожидаемый результат:</h4>
+                            <pre><code data-trim class="python">
+minimum(3, 8)  # 3
+minimum(10, -2)  # -2
+                            </code></pre>
+                            <pre><code data-trim class="python">
+var = lambda arg1, arg2, ..., argN: результат1 if условие else результат2
+                            </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Задания</h1>
+                        <h2>Часть 2</h2>
+                    </section>
+                    <section>
+                        <h3>Произведение чисел</h3>
+                        <p>
+                            Напишите лямбда-функцию, которая принимает два числа
+                            и возвращает их сумму
+                        </p>
+                        <pre><code data-trim class="python">
+sum_numbers(3, 7)  # 10
+                        </code></pre>
+                        <h3>Определение четного числа</h3>
+                        <p>
+                            Напишите лямбда-функцию, которая принимает число и
+                            возвращает True, если оно четное, и False, если
+                            нечетное
+                        </p>
+                        <pre><code data-trim class="python">
+print(is_even(8))  # True
+print(is_even(3))  # False
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Умножение на 10</h3>
+                        <p>
+                            Напишите лямбда-функцию, которая принимает число и
+                            умножает его на 10
+                        </p>
+                        <pre><code data-trim class="python">
+print(multiply_by_10(5))  # 50
+                        </code></pre>
+                        <h3>Первое слово в строке</h3>
+                        <p>
+                            Напишите лямбда-функцию, которая принимает строку и
+                            возвращает первое слово (разделитель — пробел)
+                        </p>
+                        <pre><code data-trim class="python">
+print(multiply_by_10(5))  # 50
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Применение функции ко всем элементам списка</h3>
+                        <p>Удвоить все числа в списке</p>
+                        <pre><code data-trim class="python">
+numbers = [1, 2, 3, 4, 5]
+...
+print(doubled)  # [2, 4, 6, 8, 10]
+                        </code></pre>
+                        <hr />
+                        <h3>Фильтрация элементов списка</h3>
+                        <p>Фильтрация элементов списка</p>
+                        <pre><code data-trim class="python">
+numbers = [1, 2, 3, 4, 5, 6]
+...
+print(evens)  # [2, 4, 6]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Сортировка с лямбда-функцией</h3>
+                        <p>Отсортировать список строк по длине</p>
+                        <pre><code data-trim class="python">
+words = ["apple", "banana", "kiwi", "grape"]
+...
+print(sorted_words)  # ['kiwi', 'grape', 'apple', 'banana']
+                        </code></pre>
+                        <hr />
+                        <h3>Комбинация map(), filter() и sorted()*</h3>
+                        <p>
+                            Найти квадраты только четных чисел и отсортировать
+                            их по убыванию
+                        </p>
+                        <pre><code data-trim class="python">
+numbers = [1, 2, 3, 4, 5, 6]
+...
+print(result)  # [36, 16, 4]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Комбинация map(), filter() и sorted()*</h3>
+                        <pre><code data-trim class="python">
+result = sorted(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, numbers)), reverse=True)
+                        </code></pre>
+                    </section>
+                </section>
+            </div>
         </div>
-    </div>
 
-    <script src="dist/reveal.js"></script>
-    <script src="plugin/notes/notes.js"></script>
-    <script src="plugin/markdown/markdown.js"></script>
-    <script src="plugin/highlight/highlight.js"></script>
-    <script src="plugin/qrcode/qrcode.js"></script>
-    <script src="plugin/mermaid/mermaid.js"></script>
-    <script src="plugin/chalkboard/plugin.js"></script>
-    <script src="plugin/customcontrols/plugin.js"></script>
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/qrcode/qrcode.js"></script>
+        <script src="plugin/mermaid/mermaid.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+        <script src="plugin/customcontrols/plugin.js"></script>
 
-    <script>
-        tailwind.config = {
-            corePlugins: {
-                preflight: false,
-            },
-        }
-    </script>
-    <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-
-        const colors = {
-            blue0: 'rgb(61, 89, 161)',
-            blue: 'rgb(122, 162, 247)',
-            cyan: 'rgb(125, 207, 255)',
-            magenta: 'rgb(187, 154, 247)',
-            orange: 'rgb(255, 158, 100)',
-            yellow: 'rgb(224, 175, 104)',
-            green: 'rgb(158, 206, 106)',
-            teal: 'rgb(26, 188, 156)',
-            red: 'rgb(255, 117, 127)',
-            red1: 'rgb(219, 75, 75)',
-            fg: 'rgb(192, 202, 245)',
-            bg: 'rgb(26, 27, 38)',
-            transparent: '#00000000',
-        }
-
-        Reveal.initialize({
-            hash: true,
-            // Learn about plugins: https://revealjs.com/plugins/
-            plugins: [
-                RevealMarkdown,
-                RevealHighlight,
-                RevealNotes,
-                RevealMermaid,
-                RevealChalkboard,
-                RevealCustomControls,
-            ],
-            slideNumber: true,
-            customcontrols: {
-                controls: [
-                    {
-                        icon: '<div></div>',
-                        title: 'Clear canvas (DEL)',
-                        action: 'RevealChalkboard.clear();',
-                    },
-                    {
-                        icon: '<div></div>',
-                        title: 'Toggle chalkboard (B)',
-                        action: 'RevealChalkboard.toggleChalkboard();',
-                    },
-                    {
-                        icon: '<div></div>',
-                        title: 'Toggle notes canvas (C)',
-                        action: 'RevealChalkboard.toggleNotesCanvas();',
-                    },
-                ],
-            },
-            chalkboard: {
-                boardmarkerWidth: 5,
-                boardmarkers: [
-                    {
-                        color: colors.bg,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.fg,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.blue,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.red,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.green,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.yellow,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.teal,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                    {
-                        color: colors.orange,
-                        cursor:
-                            'url(' +
-                            path +
-                            'img/boardmarker-black.png), auto',
-                    },
-                ],
-                chalks: [
-                    {
-                        color: colors.bg,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.fg,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.blue,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.red,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.green,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.yellow,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.teal,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                    {
-                        color: colors.orange,
-                        cursor:
-                            'url(' + path + 'img/chalk-white.png), auto',
-                    },
-                ],
-            },
-            mermaid: {
-                securityLevel: 'loose',
-                theme: 'dark',
-                themeVariables: {
-                    darkMode: true,
-                    textColor: colors.fg,
-                    background: colors.bg,
-                    mainBkg: colors.bg,
-                    lineColor: colors.fg,
+        <script>
+            tailwind.config = {
+                corePlugins: {
+                    preflight: false,
                 },
-            },
-        })
-    </script>
-</body>
+            }
+        </script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
 
+            const colors = {
+                blue0: 'rgb(61, 89, 161)',
+                blue: 'rgb(122, 162, 247)',
+                cyan: 'rgb(125, 207, 255)',
+                magenta: 'rgb(187, 154, 247)',
+                orange: 'rgb(255, 158, 100)',
+                yellow: 'rgb(224, 175, 104)',
+                green: 'rgb(158, 206, 106)',
+                teal: 'rgb(26, 188, 156)',
+                red: 'rgb(255, 117, 127)',
+                red1: 'rgb(219, 75, 75)',
+                fg: 'rgb(192, 202, 245)',
+                bg: 'rgb(26, 27, 38)',
+                transparent: '#00000000',
+            }
+
+            Reveal.initialize({
+                hash: true,
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [
+                    RevealMarkdown,
+                    RevealHighlight,
+                    RevealNotes,
+                    RevealMermaid,
+                    RevealChalkboard,
+                    RevealCustomControls,
+                ],
+                slideNumber: true,
+                customcontrols: {
+                    controls: [
+                        {
+                            icon: '<div></div>',
+                            title: 'Clear canvas (DEL)',
+                            action: 'RevealChalkboard.clear();',
+                        },
+                        {
+                            icon: '<div></div>',
+                            title: 'Toggle chalkboard (B)',
+                            action: 'RevealChalkboard.toggleChalkboard();',
+                        },
+                        {
+                            icon: '<div></div>',
+                            title: 'Toggle notes canvas (C)',
+                            action: 'RevealChalkboard.toggleNotesCanvas();',
+                        },
+                    ],
+                },
+                chalkboard: {
+                    boardmarkerWidth: 5,
+                    boardmarkers: [
+                        {
+                            color: colors.bg,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.fg,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.blue,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.red,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.green,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.yellow,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.teal,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                        {
+                            color: colors.orange,
+                            cursor:
+                                'url(' +
+                                path +
+                                'img/boardmarker-black.png), auto',
+                        },
+                    ],
+                    chalks: [
+                        {
+                            color: colors.bg,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.fg,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.blue,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.red,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.green,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.yellow,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.teal,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                        {
+                            color: colors.orange,
+                            cursor:
+                                'url(' + path + 'img/chalk-white.png), auto',
+                        },
+                    ],
+                },
+                mermaid: {
+                    securityLevel: 'loose',
+                    theme: 'dark',
+                    themeVariables: {
+                        darkMode: true,
+                        textColor: colors.fg,
+                        background: colors.bg,
+                        mainBkg: colors.bg,
+                        lineColor: colors.fg,
+                    },
+                },
+            })
+        </script>
+    </body>
 </html>
